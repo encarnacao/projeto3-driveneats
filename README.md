@@ -51,7 +51,24 @@ O usuário deve selecionar um combo de prato, comida e sobremesa, realizando ess
     ```
     
     + **Dica**: para formatar um número decimal no formato 27.70, pesquise por `toFixed` 
-    
+
+# Bônus
+
++ Pedir nome e endereço após finalização do pedido através de dois `prompt`. Essas informações devem ser passadas pelo WhatsApp nesse **formato** (igualzinho, sem nenhum caracter a mais):
+
+```
+Olá, gostaria de fazer o pedido:
+- Prato: Frango Yin Yang
+- Bebida: Coquinha Gelada
+- Sobremesa: Pudim
+Total: R$ 27.70
+
+Nome: Fulano
+Endereço: Rua...
+```
+
++ Confirme os dados do pedido ao clicar em "Finalizar pedido", em vez de ir para o WhatsApp direto. Revise a compra seguindo a tela Bônus disponível no Figma.
+   
     
 [Figma]: https://www.figma.com/file/TsltYvVQb0LYeYAdFC42aL/DrivenEats-(Copy)?node-id=0%3A1
 [essa página]: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat?lang=pt
