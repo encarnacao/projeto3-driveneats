@@ -17,11 +17,14 @@ for(let i = 0; i < items.length; i++){
 */
 const items = document.getElementsByClassName("item");
 
+function alerta(){
+    alert("Algo acontece");
+}
+
 function contarSelecoes(){
     let contadorSelecao = 0;
     for(let i = 0; i<items.length; i++){
-        const classes = items[i].getAttribute('class');
-        if(classes.includes('selecao')){
+        if(items[i].classList.contains("selecao")){
             contadorSelecao++;
         }
     }
@@ -33,9 +36,11 @@ function disponibilizarBotao(contadorSelecao){
     if(contadorSelecao >= 3){
         botao.classList.add("disponivel");
         botao.innerHTML = "<p class='bold'>Fechar pedido</p>";
-    } else if(botao.getAttribute("class").includes("disponivel")){
+        botao.addEventListener("click", alerta)
+    } else if(botao.classList.contains("disponivel")){
         botao.classList.remove("disponivel");
         botao.innerHTML = "<p>Selecione os 3 itens para fechar o pedido</p>";
+        botao.removeEventListener("click",alerta)
     }
 }
 
@@ -48,5 +53,6 @@ for(let i = 0; i < items.length; i++){
     items[i].style.cursor="pointer";
     items[i].addEventListener("click", select);
 }
+
 
 
