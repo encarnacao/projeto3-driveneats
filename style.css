@@ -45,7 +45,6 @@ ion-icon{
 .container-itens{
     display: flex;
     width: 100%;
-    overflow: hidden;
     overflow-x: scroll;
 }
 
