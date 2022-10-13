@@ -15,7 +15,8 @@ for(let i = 0; i < items.length; i++){
     items[i].addEventListener("click", myFunc);
 }
 */
-const items = document.getElementsByClassName("item");
+const items = document.querySelectorAll(".item");
+const containerItems = document.querySelectorAll(".container-itens");
 
 function alerta(){
     alert("Algo acontece");
@@ -44,8 +45,19 @@ function disponibilizarBotao(contadorSelecao){
     }
 }
 
+function deselect(child,attribute){
+    const parent = child.parentNode.children
+    for(let i = 0; i<parent.length;i++){
+        const classes = parent[i].classList;
+        if(classes.contains(attribute)){
+            classes.toggle(attribute);
+        }
+    }
+}
+
 function select(){  
-    this.classList.toggle("selecao")
+    deselect(this,"selecao");
+    this.classList.toggle("selecao");
     disponibilizarBotao(contarSelecoes());
 }
 
@@ -53,6 +65,3 @@ for(let i = 0; i < items.length; i++){
     items[i].style.cursor="pointer";
     items[i].addEventListener("click", select);
 }
-
-
-
