@@ -18,13 +18,22 @@ for(let i = 0; i < items.length; i++){
 const items = document.querySelectorAll(".item");
 const telaConfirmacao = document.querySelector(".container-confirmacao");
 const body = document.querySelector("body");
+let mensagem;
 
 function cancelar(){
+    /**
+     * Retorna a tela anterior.
+     */
     telaConfirmacao.classList.add("not-display")
     body.classList.remove("not-slide");
 }
 
 function somaFormatada(precos){
+    /**
+     * Soma lista de preços a formatando o delimitador decimal com virgula.
+     * @param {array} precos lista de preços.
+     * @return {float} soma formatada.
+     */
     soma = 0;
     for(let i=0;i < precos.length; i++){
         soma += Number(precos[i].replace(",","."));
@@ -33,6 +42,9 @@ function somaFormatada(precos){
 }
 
 function confirma(){
+    /**
+     * Mostra tela de confirmação com itens e preços e formata a mensagem a ser enviada por whatsapp.
+     */
     const selecoes = document.querySelectorAll(".selecao");
     let titulos = [],precos = [];
     for(let i = 0; i < selecoes.length; i++){
@@ -46,9 +58,11 @@ function confirma(){
         confirmacaoItens[i].querySelector(".titulo-confirmado").innerText = titulos[i];
         confirmacaoItens[i].querySelector(".preco-confirmado").innerText = precos[i];
     }
-    document.querySelector(".preco-total").innerText = somaFormatada(precos);
+    const precoTotal = somaFormatada(precos);
+    document.querySelector(".preco-total").innerText = precoTotal;
     telaConfirmacao.classList.remove("not-display");
     body.classList.add("not-slide");
+    mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${titulos[0]}\n- Bebida: ${titulos[1]}\n- Sobremesa: ${titulos[2]}\nTotal: R$ ${precoTotal.replace(",",".")}\n`;
 }
 
 function contarSelecoes(){
@@ -108,4 +122,15 @@ function select(){
 for(let i = 0; i < items.length; i++){
     items[i].style.cursor="pointer";
     items[i].addEventListener("click", select);
+}
+
+function confirmar(){
+    /**
+     * Confirma pedido por Whatsapp.
+     */
+    const nome = prompt("Insira seu nome:");
+    const endereco = prompt("Insira seu endereço:");
+    mensagem += `\nNome: ${nome}\nEndereço: ${endereco}`;
+    const link = "https://wa.me/5521991868083?text="+encodeURIComponent(mensagem);
+    window.open(link,"_blank");
 }
