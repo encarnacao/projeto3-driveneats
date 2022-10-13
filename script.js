@@ -16,13 +16,15 @@ for(let i = 0; i < items.length; i++){
 }
 */
 const items = document.querySelectorAll(".item");
-const containerItems = document.querySelectorAll(".container-itens");
 
 function alerta(){
     alert("Algo acontece");
 }
 
 function contarSelecoes(){
+    /**
+     * Conta todos os itens com a classe "selecao"
+     */
     let contadorSelecao = 0;
     for(let i = 0; i<items.length; i++){
         if(items[i].classList.contains("selecao")){
@@ -33,6 +35,10 @@ function contarSelecoes(){
 }
 
 function disponibilizarBotao(contadorSelecao){
+    /**
+     * Checa se o botão pode ser disponibilizado.
+     * @param {Int} contadorSelecao numero de itens selecionados.
+     */
     const botao = document.querySelector(".botao");
     if(contadorSelecao >= 3){
         botao.classList.add("disponivel");
@@ -44,18 +50,26 @@ function disponibilizarBotao(contadorSelecao){
         botao.removeEventListener("click",alerta)
     }
 }
-
 function deselect(child,attribute){
-    const parent = child.parentNode.children
-    for(let i = 0; i<parent.length;i++){
-        const classes = parent[i].classList;
-        if(classes.contains(attribute)){
-            classes.toggle(attribute);
+    /**
+     * Garante que só um item de cada categoria terá um atributo.
+     * @param {Object} child Item clicado.
+     * @param {String} attribute Atributo a ser checado se outros elementos do pai possuem.
+     */
+    const children = child.parentNode.children; //Pega todas as crianças do pai.
+    const index = Array.prototype.indexOf.call(children,child); //Pega indice do item sendo clicado.
+    for(let i = 0; i<children.length;i++){
+        const classes = children[i].classList;
+        if(classes.contains(attribute) && i !== index){ //Checa se criança, que não o selecionado, tem atributo
+            classes.toggle(attribute); //Troca o atributo se tiver
         }
     }
 }
 
 function select(){  
+    /**
+     * Seleciona item clicado.
+     */
     deselect(this,"selecao");
     this.classList.toggle("selecao");
     disponibilizarBotao(contarSelecoes());
