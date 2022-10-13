@@ -134,7 +134,7 @@ ion-icon{
 .botao {
     width: 364px;
     height: 61px;
-    background: #CBCBCB;
+    background-color: #CBCBCB;
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -144,10 +144,18 @@ ion-icon{
 }
 
 .botao p{
-    font-weight: 400;
     font-size: 20px;
     line-height: 23px;
     text-align: center;
     letter-spacing: 0.018em;
     color: #FFFFFF;
+}
+
+.disponivel {
+    background-color: #32B72F;
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: 700;
 }
