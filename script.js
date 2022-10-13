@@ -16,9 +16,39 @@ for(let i = 0; i < items.length; i++){
 }
 */
 const items = document.querySelectorAll(".item");
+const telaConfirmacao = document.querySelector(".container-confirmacao");
+const body = document.querySelector("body");
 
-function alerta(){
-    alert("Algo acontece");
+function cancelar(){
+    telaConfirmacao.classList.add("not-display")
+    body.classList.remove("not-slide");
+}
+
+function somaFormatada(precos){
+    soma = 0;
+    for(let i=0;i < precos.length; i++){
+        soma += Number(precos[i].replace(",","."));
+    }
+    return soma.toFixed(2).replace(".",",");
+}
+
+function confirma(){
+    const selecoes = document.querySelectorAll(".selecao");
+    let titulos = [],precos = [];
+    for(let i = 0; i < selecoes.length; i++){
+        const titulo = selecoes[i].querySelector(".titulo").innerText;
+        const precoNF = selecoes[i].querySelector(".preco").innerText;
+        titulos.push(titulo);
+        precos.push(precoNF.slice(3));
+    }
+    const confirmacaoItens = document.querySelectorAll(".confirmacao-item");
+    for(let i = 0; i < confirmacaoItens.length; i++){
+        confirmacaoItens[i].querySelector(".titulo-confirmado").innerText = titulos[i];
+        confirmacaoItens[i].querySelector(".preco-confirmado").innerText = precos[i];
+    }
+    document.querySelector(".preco-total").innerText = somaFormatada(precos);
+    telaConfirmacao.classList.remove("not-display");
+    body.classList.add("not-slide");
 }
 
 function contarSelecoes(){
@@ -43,11 +73,11 @@ function disponibilizarBotao(contadorSelecao){
     if(contadorSelecao >= 3){
         botao.classList.add("disponivel");
         botao.innerHTML = "<p class='bold'>Fechar pedido</p>";
-        botao.addEventListener("click", alerta)
+        botao.addEventListener("click", confirma)
     } else if(botao.classList.contains("disponivel")){
         botao.classList.remove("disponivel");
         botao.innerHTML = "<p>Selecione os 3 itens para fechar o pedido</p>";
-        botao.removeEventListener("click",alerta)
+        botao.removeEventListener("click",confirma)
     }
 }
 function deselect(child,attribute){
