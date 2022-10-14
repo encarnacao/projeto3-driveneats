@@ -1,4 +1,4 @@
-# Projeto 3 - DrivenEats
+# Projeto #03 - DrivenEats
 
 Temos nosso primeiro projeto com a implementação de JavaScript. Devemos criar um site mobile do DrivenEats, um restaurante que *supostamente* entrega sua refeição em 6 minutos.
 
