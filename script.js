@@ -94,20 +94,15 @@ function disponibilizarBotao(contadorSelecao){
         botao.removeEventListener("click",confirma)
     }
 }
-function deselect(child,attribute){
+function deselect(child){
     /**
      * Garante que só um item de cada categoria terá um atributo.
      * @param {Object} child Item clicado.
-     * @param {String} attribute Atributo a ser checado se outros elementos do pai possuem.
      */
-    const children = child.parentNode.children; //Pega todas as crianças do pai.
-    const index = Array.prototype.indexOf.call(children,child); //Pega indice do item sendo clicado.
-    for(let i = 0; i<children.length;i++){
-        const classes = children[i].classList;
-        if(classes.contains(attribute) && i !== index){ //Checa se criança, que não o selecionado, tem atributo
-            classes.toggle(attribute); //Troca o atributo se tiver
-        }
-    }
+    const pai = child.parentNode; //Pega o elemento pai do item clicado.
+    if(pai.querySelector(".selecao") != null && pai.querySelector(".selecao") != child){ //Se o elemento pai tiver um item selecionado e esse item não for o item clicado.
+        pai.querySelector(".selecao").classList.remove("selecao"); //Remove a classe "selecao" do item selecionado.
+    } 
 }
 
 function select(){  
