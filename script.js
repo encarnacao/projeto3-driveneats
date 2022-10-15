@@ -1,20 +1,3 @@
-/*Primeiro teste que fiz para entender algumas coisas de usar JS para editar o HTML.
-const items = document.getElementsByClassName("item");
-
- 
-function myFunc(){
-    if(this.style.backgroundColor === "red"){
-        this.style.backgroundColor = "#FFFFFF";
-    } else{
-        this.style.backgroundColor = "red";
-    }
-}
-
-for(let i = 0; i < items.length; i++){
-    items[i].style.cursor="pointer";
-    items[i].addEventListener("click", myFunc);
-}
-*/
 const items = document.querySelectorAll(".item");
 const telaConfirmacao = document.querySelector(".container-confirmacao");
 const body = document.querySelector("body");
@@ -89,7 +72,7 @@ function deselect(child){
      * Garante que só um item de cada categoria terá um atributo.
      * @param {Object} child Item clicado.
      */
-    const pai = child.parentNode; //Pega o elemento pai do item clicado.
+    const pai = child.parentElement; //Pega o elemento pai do item clicado.
     if(pai.querySelector(".selecao") != null && pai.querySelector(".selecao") != child){ //Se o elemento pai tiver um item selecionado e esse item não for o item clicado.
         pai.querySelector(".selecao").classList.remove("selecao"); //Remove a classe "selecao" do item selecionado.
     } 
