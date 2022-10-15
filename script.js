@@ -65,24 +65,14 @@ function confirma(){
     mensagem = `Olá, gostaria de fazer o pedido:\n- Prato: ${titulos[0]}\n- Bebida: ${titulos[1]}\n- Sobremesa: ${titulos[2]}\nTotal: R$ ${precoTotal.replace(",",".")}\n`;
 }
 
-function contarSelecoes(){
-    /**
-     * Conta todos os itens com a classe "selecao"
-     */
-    let contadorSelecao = 0;
-    for(let i = 0; i<items.length; i++){
-        if(items[i].classList.contains("selecao")){
-            contadorSelecao++;
-        }
-    }
-    return contadorSelecao;
-}
 
-function disponibilizarBotao(contadorSelecao){
+
+function disponibilizarBotao(){
     /**
      * Checa se o botão pode ser disponibilizado.
-     * @param {Int} contadorSelecao numero de itens selecionados.
      */
+    const selecoes = document.querySelectorAll(".selecao");
+    const contadorSelecao = selecoes.length;
     const botao = document.querySelector(".botao");
     if(contadorSelecao >= 3){
         botao.classList.add("disponivel");
@@ -111,7 +101,7 @@ function select(){
      */
     deselect(this,"selecao");
     this.classList.toggle("selecao");
-    disponibilizarBotao(contarSelecoes());
+    disponibilizarBotao();
 }
 
 for(let i = 0; i < items.length; i++){
