@@ -78,19 +78,23 @@ function deselect(child){
     } 
 }
 
-function select(){  
+function select(e){  
     /**
      * Seleciona item clicado.
      */
-    deselect(this,"selecao");
-    this.classList.toggle("selecao");
-    disponibilizarBotao();
+    const target = e.target;
+    let child;
+    
+
+    if(target.matches(".item") || target.parentNode.matches(".item")){ //Se o elemento clicado for um item.
+        (target.matches(".item"))? child = target : child = target.parentNode; //Se o elemento clicado for um item, ele é o filho, caso contrário, o filho é o elemento pai do elemento clicado.
+        deselect(child,"selecao");
+        child.classList.toggle("selecao");
+        disponibilizarBotao();
+    }
 }
 
-for(let i = 0; i < items.length; i++){
-    items[i].style.cursor="pointer";
-    items[i].addEventListener("click", select);
-}
+document.querySelector(".container").addEventListener("click",select);
 
 function confirmar(){
     /**

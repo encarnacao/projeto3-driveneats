@@ -63,7 +63,8 @@ ion-icon{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px
+    padding: 15px;
+    cursor: pointer;
 }
 
 .item img{
