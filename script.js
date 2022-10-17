@@ -103,6 +103,6 @@ function confirmar(){
     const nome = prompt("Insira seu nome:");
     const endereco = prompt("Insira seu endereço:");
     mensagem += `\nNome: ${nome}\nEndereço: ${endereco}`;
-    const link = "https://wa.me/5521991868083?text="+encodeURIComponent(mensagem);
+    const link = "https://wa.me/5512123456789?text="+encodeURIComponent(mensagem);
     window.open(link,"_self");
 }
